@@ -338,9 +338,9 @@ GameObject:
   - component: {fileID: 2016495406}
   - component: {fileID: 2016495405}
   - component: {fileID: 2016495408}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spine Mecanim GameObject (zombie)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
