@@ -1,0 +1,7 @@
+zombie.png
+size:229,395
+filter:Linear,Linear
+pma:true
+image/zombie_temp
+bounds:2,2,225,391
+offsets:48,21,330,425
