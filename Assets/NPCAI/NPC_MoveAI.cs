@@ -17,31 +17,27 @@ public class NPC_MoveAI : MonoBehaviour
 
     [Header("Npc")]
     public Transform npc;
+    public bool Guard;
+    public float attackRange;
+    //public Animator anim;
 
     [Header("Agent")]
-    public Transform target;
     public NavMeshAgent Ai;
     public List<Vector3> targetPoints;
     public Vector3 orginPos;
     public bool callMove = true;
     bool moveBack;
 
-    float runTimer;
-    float resetTimer;
+    float runTimer , atkTimer;
+    public float tr_Timer , atk_CD;
     bool TriggerRun;
+
+    public Collider2D attackRegion;
+
 
     [Header("Player")]
     public GameObject player;
 
-    
-    /*
-    [Header("RandomPoint")]
-    public int Upmin;
-    public int Lowmin;
-    public int Rightmin;
-    public int Leftmin;
-    */
-    
     
 
 
@@ -54,6 +50,7 @@ public class NPC_MoveAI : MonoBehaviour
     void Update()
     {
         runTimer += Time.deltaTime;
+        atkTimer += Time.deltaTime;
 
         switch (m_States)
         {
@@ -74,13 +71,19 @@ public class NPC_MoveAI : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if(Vector3.Distance (npc.position , player.transform.position) <= 12) //如果與PLAYER距離小於3的話
+        if(Vector3.Distance (npc.position , player.transform.position) <= 12 && !Guard) //如果與PLAYER距離小於3的話
         {
             runTimer = 0;
             
             m_States = States.RunAway;
             TriggerRun = true;
         }
+
+        if(GameObject.FindGameObjectWithTag("Player") != null && Guard)
+        {
+            m_States = States.Attack;
+        }
+        
 
 
         //Ai.destination = target.position;
@@ -93,17 +96,21 @@ public class NPC_MoveAI : MonoBehaviour
             npc.rotation = Quaternion.Euler(0, 180, 0);
         }
         
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if(collision.transform.tag == "Player")
+        {
+            //Destroy(npc.gameObject);
+        }
     }
+
 
     void Walk()
     {
-        
+        //anim.Play("Move");
+        Ai.speed = 7f;
         if (callMove == true)
         {
             callMove = false;
@@ -112,12 +119,10 @@ public class NPC_MoveAI : MonoBehaviour
             Ai.destination = targetPoints[0] + orginPos;
         }
 
-
         if (Vector3.Distance(targetPoints[0] + orginPos, npc.position) <= Ai.stoppingDistance)
         {
             if (targetPoints.Count <= 1)
             {
-
                 moveBack = true;
                 Ai.destination = orginPos;
 
@@ -131,34 +136,29 @@ public class NPC_MoveAI : MonoBehaviour
 
         if (Vector3.Distance(targetPoints[1] + targetPoints[0] + orginPos, npc.position) <= Ai.stoppingDistance)
         {
-                //Debug.Log("back");
-                if (targetPoints.Count <= 2)
-                {
-
-                    moveBack = true;
-                    Ai.destination = orginPos;
-
-                }
-                else
-                {
-                    Ai.destination = targetPoints[2] + targetPoints[1] + targetPoints[0] + orginPos;
-                }
+            //Debug.Log("back");
+            if (targetPoints.Count <= 2)
+            {
+                moveBack = true;
+                Ai.destination = orginPos;
+            }
+            else
+            {
+                Ai.destination = targetPoints[2] + targetPoints[1] + targetPoints[0] + orginPos;
+            }
         }
-
 
         if (Vector3.Distance(targetPoints[2] + targetPoints[1] + targetPoints[0] + orginPos, npc.position) <= Ai.stoppingDistance)
         {
-                   moveBack = true;
-                   Ai.destination = orginPos;
+             moveBack = true;
+             Ai.destination = orginPos;
         }
-
         
         if(Vector2.Distance(orginPos, npc.position) <= 0.5f && moveBack)
         {
              StartCoroutine(CountRest());
              m_States = States.Idle;
              moveBack = false;
-                
         }
               
     }
@@ -166,22 +166,40 @@ public class NPC_MoveAI : MonoBehaviour
     void Idle()
     {
         //放動畫
+        //anim.Play("Idle");
     }
 
     void Attack()
     {
+        Ai.speed = 12f;
+        Ai.destination = player.transform.position;
+
+        if (atkTimer >= 0.5f)
+        {
+            attackRegion.enabled = false;
+
+        }
+
+        if (atkTimer >= atk_CD && Vector3.Distance(npc.position , player.transform.position) <= attackRange)
+        {
+            attackRegion.enabled = true;
+            atkTimer = 0f;
+        }
 
     }
 
     void RunAway()
     {
+        Ai.speed = 20f;
+        //anim.Play("Move");
+
         if (TriggerRun)
         {
             Ai.destination = npc.transform.position + 2 * (npc.transform.position - player.transform.position);
             TriggerRun = false;
         }
 
-        if (runTimer >= 5f)
+        if (runTimer >= tr_Timer)
         {
             Ai.destination = npc.transform.position;
             m_States = defualtStates;
