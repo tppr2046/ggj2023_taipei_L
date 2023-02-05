@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scenes/1/NavMesh-NavMesh.asset.meta
-guid: 001f9b338ad07584fbb382528511af06
+guid: 237968ab95ac87d47a347e1dd5fd6e59
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 23800000
-========
-guid: 3758df63e53de7043a6e9d3150243dfe
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 9100000
->>>>>>>> 46879ea5a2bd66268e56ae446ac78ab119a1375d:Assets/ALL things/Animations/ButtonDoor1.controller.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
