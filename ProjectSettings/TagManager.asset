@@ -9,6 +9,10 @@ TagManager:
   - GasButton
   - GasRegion
   - Npc
+  - guard
+  - scientist
+  - cleaner
+  - rootplayer
   layers:
   - Default
   - TransparentFX
