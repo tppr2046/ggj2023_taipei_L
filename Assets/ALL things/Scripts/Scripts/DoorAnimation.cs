@@ -7,6 +7,6 @@ public class DoorAnimation : MonoBehaviour
     public Animator animator;
     public void opendoor()
     {
-        animator.Play("Open");
+        animator.Play("DoorAnimation");
     }
 }
