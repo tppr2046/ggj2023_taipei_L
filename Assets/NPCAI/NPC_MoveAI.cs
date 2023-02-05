@@ -5,15 +5,15 @@ using UnityEngine.AI;
 using HutongGames.PlayMaker;
 
 
-enum States
+public enum States
 {
     Idle, Walk, RunAway, Attack, Infect
 }
 
 public class NPC_MoveAI : MonoBehaviour
 {
-    [SerializeField] States m_States;
-    States defualtStates;
+    [SerializeField] public States m_States;
+    public States defualtStates;
 
 
     [Header("Npc")]
