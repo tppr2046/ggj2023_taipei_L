@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_States: 0
-  defualtStates: 0
   npc: {fileID: 3598758239123645040}
   Guard: 0
   attackRange: 0
@@ -183,7 +182,9 @@ MonoBehaviour:
   atk_CD: 0
   TriggerRun: 0
   attackRegion: {fileID: 8646718352324585918}
+  AttackArea: {fileID: 0}
   player: {fileID: 0}
+  fsm: {fileID: 3287697472696325274}
 --- !u!195 &7751423538686632330
 NavMeshAgent:
   m_ObjectHideFlags: 0
