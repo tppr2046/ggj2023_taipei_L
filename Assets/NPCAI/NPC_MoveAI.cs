@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using HutongGames.PlayMaker;
 
 
-enum States
+public enum States
 {
-    Idle , Walk , RunAway , Attack
+    Idle, Walk, RunAway, Attack, Infect
 }
 
 public class NPC_MoveAI : MonoBehaviour
 {
-    [SerializeField] States m_States;
-    States defualtStates;
-    
+    [SerializeField] public States m_States;
+    public States defualtStates;
+
 
     [Header("Npc")]
     public Transform npc;
@@ -28,9 +29,9 @@ public class NPC_MoveAI : MonoBehaviour
     public bool callMove = true;
     bool moveBack;
 
-    float runTimer , atkTimer;
-    public float tr_Timer , atk_CD;
-    bool TriggerRun;
+    float runTimer, atkTimer;
+    public float tr_Timer, atk_CD;
+    public bool TriggerRun;
 
     public Collider2D attackRegion;
 
@@ -38,8 +39,8 @@ public class NPC_MoveAI : MonoBehaviour
     [Header("Player")]
     public GameObject player;
 
-    
 
+    public PlayMakerFSM fsm;
 
     void Awake()
     {
@@ -66,41 +67,45 @@ public class NPC_MoveAI : MonoBehaviour
             case States.Attack:
                 Attack();
                 break;
-            
+            case States.Infect:
+                Infect();
+                break;
+
         }
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if(Vector3.Distance (npc.position , player.transform.position) <= 12 && !Guard) //¦pªG»PPLAYER¶ZÂ÷¤p©ó3ªº¸Ü
+        if (Vector3.Distance(npc.position, player.transform.position) <= 12 && !Guard) //ï¿½pï¿½Gï¿½PPLAYERï¿½Zï¿½ï¿½ï¿½pï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½
         {
             runTimer = 0;
-            
+
             m_States = States.RunAway;
+
             TriggerRun = true;
         }
 
-        if(GameObject.FindGameObjectWithTag("Player") != null && Guard)
+        if (GameObject.FindGameObjectWithTag("Player") != null && Guard)
         {
             m_States = States.Attack;
         }
-        
+
 
 
         //Ai.destination = target.position;
-        if (Ai.destination.x >= npc.position.x)
+        if (Ai.destination.x > npc.position.x)
         {
-            npc.rotation = Quaternion.Euler(0, 0,0);
+            npc.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
             npc.rotation = Quaternion.Euler(0, 180, 0);
         }
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             //Destroy(npc.gameObject);
         }
@@ -109,12 +114,13 @@ public class NPC_MoveAI : MonoBehaviour
 
     void Walk()
     {
+        fsm.SendEvent("WALK");
         //anim.Play("Move");
         Ai.speed = 7f;
         if (callMove == true)
         {
             callMove = false;
-            
+
             orginPos = npc.position;
             Ai.destination = targetPoints[0] + orginPos;
         }
@@ -125,13 +131,11 @@ public class NPC_MoveAI : MonoBehaviour
             {
                 moveBack = true;
                 Ai.destination = orginPos;
-
             }
             else
             {
                 Ai.destination = targetPoints[1] + targetPoints[0] + orginPos;
             }
-
         }
 
         if (Vector3.Distance(targetPoints[1] + targetPoints[0] + orginPos, npc.position) <= Ai.stoppingDistance)
@@ -150,27 +154,29 @@ public class NPC_MoveAI : MonoBehaviour
 
         if (Vector3.Distance(targetPoints[2] + targetPoints[1] + targetPoints[0] + orginPos, npc.position) <= Ai.stoppingDistance)
         {
-             moveBack = true;
-             Ai.destination = orginPos;
+            moveBack = true;
+            Ai.destination = orginPos;
         }
-        
-        if(Vector2.Distance(orginPos, npc.position) <= 0.5f && moveBack)
+
+        if (Vector2.Distance(orginPos, npc.position) <= 0.5f && moveBack)
         {
-             StartCoroutine(CountRest());
-             m_States = States.Idle;
-             moveBack = false;
+            StartCoroutine(CountRest());
+            m_States = States.Idle;
+            moveBack = false;
         }
-              
+
     }
 
     void Idle()
     {
-        //©ñ°Êµe
+        //ï¿½ï¿½Êµe
         //anim.Play("Idle");
+        fsm.SendEvent("IDLE");
     }
 
     void Attack()
     {
+        fsm.SendEvent("ATTACK");
         Ai.speed = 12f;
         Ai.destination = player.transform.position;
 
@@ -180,7 +186,7 @@ public class NPC_MoveAI : MonoBehaviour
 
         }
 
-        if (atkTimer >= atk_CD && Vector3.Distance(npc.position , player.transform.position) <= attackRange)
+        if (atkTimer >= atk_CD && Vector3.Distance(npc.position, player.transform.position) <= attackRange)
         {
             attackRegion.enabled = true;
             atkTimer = 0f;
@@ -190,7 +196,9 @@ public class NPC_MoveAI : MonoBehaviour
 
     void RunAway()
     {
+        fsm.SendEvent("RUN");
         Ai.speed = 20f;
+        Debug.Log("Run");
         //anim.Play("Move");
 
         if (TriggerRun)
@@ -208,13 +216,19 @@ public class NPC_MoveAI : MonoBehaviour
         }
     }
 
+    void Infect()
+    {
+        fsm.SendEvent("INFECT");
+    }
+
+
     IEnumerator CountRest()
     {
         yield return new WaitForSeconds(3f);
-        
+
         callMove = true;
 
-        if(m_States != States.RunAway)
+        if (m_States != States.RunAway)
             m_States = States.Walk;
     }
 }
