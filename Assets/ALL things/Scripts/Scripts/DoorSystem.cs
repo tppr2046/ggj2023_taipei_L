@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class DoorSystem : MonoBehaviour
 {
-    public List<string> Keylist;
     [SerializeField] private DoorAnimation door;
     [SerializeField] private IDdooranimation IDdoor;
+    [SerializeField] private Gastrigger Gas;
     private bool buttontrigger = false;
+    private bool gasbuttontrigger = false;
     void Update()
     {
         if (Input.GetKey(KeyCode.Space) && buttontrigger)
         {
             Destroy(GameObject.FindWithTag("Button1"));
             door.opendoor();
+        }
+        if (Input.GetKey(KeyCode.Space) && gasbuttontrigger)
+        {
+            Gas.putgas();
         }
     }
     void OnTriggerEnter2D(Collider2D collide)
@@ -25,6 +30,10 @@ public class DoorSystem : MonoBehaviour
         if (collide.gameObject.CompareTag("IDRegion"))
         {
             IDdoor.openIDdoor();
+        }
+        if (collide.gameObject.CompareTag("GasButton"))
+        {
+            gasbuttontrigger = true;
         }
     }
 }

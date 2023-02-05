@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Button1
   - IDRegion
+  - GasButton
+  - GasRegion
+  - Npc
   layers:
   - Default
   - TransparentFX

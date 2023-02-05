@@ -7,6 +7,6 @@ public class IDdooranimation : MonoBehaviour
     public Animator animator;
     public void openIDdoor()
     {
-        animator.Play("NewAnimation");
+        animator.Play("New Animation");
     }
 }
