@@ -9,6 +9,7 @@ TagManager:
   - GasButton
   - GasRegion
   - Npc
+  - scientist
   layers:
   - Default
   - TransparentFX
