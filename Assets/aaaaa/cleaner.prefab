@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 2023028872500941425}
   m_Layer: 0
   m_Name: cleaner
-  m_TagString: Untagged
+  m_TagString: cleaner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
