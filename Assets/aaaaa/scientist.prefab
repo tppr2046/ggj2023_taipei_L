@@ -15,12 +15,13 @@ GameObject:
   - component: {fileID: 3598758239123645052}
   - component: {fileID: 5700429350655819732}
   - component: {fileID: 7751423538686632330}
+  - component: {fileID: 8954584892129949750}
   - component: {fileID: 7453719443070017785}
   - component: {fileID: 7089550451152433069}
   - component: {fileID: 4467041710369464320}
-  - component: {fileID: 4348251206934961770}
   - component: {fileID: 3287697472696325274}
   - component: {fileID: 6919503249463827485}
+  - component: {fileID: 8646718352324585918}
   m_Layer: 0
   m_Name: scientist
   m_TagString: scientist
@@ -172,15 +173,17 @@ MonoBehaviour:
   Guard: 0
   attackRange: 0
   Ai: {fileID: 7751423538686632330}
-  targetPoints: []
+  targetPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   orginPos: {x: 0, y: 0, z: 0}
   callMove: 1
   tr_Timer: 5
   atk_CD: 0
   TriggerRun: 0
-  attackRegion: {fileID: 0}
+  attackRegion: {fileID: 8646718352324585918}
   player: {fileID: 0}
-  fsm: {fileID: 3287697472696325274}
 --- !u!195 &7751423538686632330
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -203,6 +206,19 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8954584892129949750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598758239123645053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa790088bdbebb4c93e4120c33a3f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IDcard: 0
 --- !u!114 &7453719443070017785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,15 +233,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canSpread: 0
   timer: 0
-  spreadOrNot: {fileID: 0}
   contect: {fileID: 0}
   isContecting: 0
-  collectstuff: {fileID: 0}
+  collectstuff: {fileID: 8954584892129949750}
   zombieType:
   - {fileID: 1560627678734196287, guid: 242408ca6fa424347a9470f186cdd068, type: 3}
-  - {fileID: 710611333242017818, guid: 8cf188a9f5cb40b42add9ad89d7d8de1, type: 3}
-  - {fileID: 1560627678734196287, guid: 242408ca6fa424347a9470f186cdd068, type: 3}
   - {fileID: 4835138604375663229, guid: 14060df80094011479f0f5460cb468d3, type: 3}
+  - {fileID: 710611333242017818, guid: 8cf188a9f5cb40b42add9ad89d7d8de1, type: 3}
   zombie: 0
 --- !u!61 &7089550451152433069
 BoxCollider2D:
@@ -299,19 +313,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4348251206934961770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3598758239123645053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a01774b9f9c86b4daaa4368c44c30ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IDcard: 0
 --- !u!114 &3287697472696325274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,3 +1572,38 @@ MonoBehaviour:
     handleAnimatorIK: 0
   fsmTemplate: {fileID: 0}
   eventHandlerComponentsAdded: 0
+--- !u!58 &8646718352324585918
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598758239123645053}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.051381752, y: 0.47668713}
+  serializedVersion: 2
+  m_Radius: 0.5304495

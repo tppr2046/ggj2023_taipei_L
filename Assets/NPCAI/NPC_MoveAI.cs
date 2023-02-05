@@ -12,7 +12,7 @@ public enum States
 public class NPC_MoveAI : MonoBehaviour
 {
     public States m_States;
-    public States defualtStates;
+    States defualtStates;
     
 
     [Header("Npc")]
@@ -33,6 +33,7 @@ public class NPC_MoveAI : MonoBehaviour
     public bool TriggerRun;
 
     public Collider2D attackRegion;
+    public GameObject AttackArea; //新的
 
 
     [Header("Player")]
@@ -71,7 +72,7 @@ public class NPC_MoveAI : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if(Vector3.Distance (npc.position , player.transform.position) <= 12 && !Guard) //如果與PLAYER距離小於3的話
+        if(!Guard && player != null && Vector3.Distance (npc.position , player.transform.position) <= 12) //如果與PLAYER距離小於3的話
         {
             runTimer = 0;
             
@@ -83,6 +84,10 @@ public class NPC_MoveAI : MonoBehaviour
         if(GameObject.FindGameObjectWithTag("Player") != null && Guard)
         {
             m_States = States.Attack;
+        } 
+        else if(GameObject.FindGameObjectWithTag("Player") == null && Guard)
+        {
+            m_States = defualtStates;
         }
         
 
@@ -166,6 +171,7 @@ public class NPC_MoveAI : MonoBehaviour
     {
         //放動畫
         //anim.Play("Idle");
+        Ai.destination = this.transform.position;
     }
 
     void Attack()
@@ -175,13 +181,15 @@ public class NPC_MoveAI : MonoBehaviour
 
         if (atkTimer >= 0.5f)
         {
-            attackRegion.enabled = false;
+            attackRegion.enabled = false; //OLD
+            AttackArea.SetActive(false);
 
         }
 
         if (atkTimer >= atk_CD && Vector3.Distance(npc.position , player.transform.position) <= attackRange)
         {
-            attackRegion.enabled = true;
+            attackRegion.enabled = true; //OLD
+            AttackArea.SetActive(true);
             atkTimer = 0f;
         }
 

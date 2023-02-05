@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 1560627678734196285}
   - component: {fileID: 1560627678734196284}
   - component: {fileID: 4718992574057664374}
-  - component: {fileID: 8313860084044477488}
   - component: {fileID: 6845879452048317744}
   - component: {fileID: 7598560902433825029}
+  - component: {fileID: 1054890639235925110}
+  - component: {fileID: -4445289072819030548}
   m_Layer: 6
   m_Name: scientist_zombie
   m_TagString: Player
@@ -1089,19 +1090,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8313860084044477488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560627678734196287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a01774b9f9c86b4daaa4368c44c30ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IDcard: 0
 --- !u!114 &6845879452048317744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,11 +1104,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canSpread: 0
   timer: 0
-  spreadOrNot: {fileID: 0}
   contect: {fileID: 0}
   isContecting: 0
-  collectstuff: {fileID: 0}
-  zombieType: []
+  collectstuff: {fileID: 1054890639235925110}
+  zombieType:
+  - {fileID: 1560627678734196287}
+  - {fileID: 4835138604375663229, guid: 14060df80094011479f0f5460cb468d3, type: 3}
+  - {fileID: 710611333242017818, guid: 8cf188a9f5cb40b42add9ad89d7d8de1, type: 3}
   zombie: 0
 --- !u!61 &7598560902433825029
 BoxCollider2D:
@@ -1167,3 +1157,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.61249095, y: 1.0708157}
   m_EdgeRadius: 0
+--- !u!114 &1054890639235925110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560627678734196287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa790088bdbebb4c93e4120c33a3f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IDcard: 0
+--- !u!114 &-4445289072819030548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560627678734196287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fe1dafaecc47448bc42fd561ea3efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2

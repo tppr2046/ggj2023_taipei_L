@@ -8,7 +8,7 @@ public class Spreading : MonoBehaviour
     public bool canSpread;
     public float timer;
 
-    public GameObject spreadOrNot;
+    
 
     public Collider2D contect;
 
@@ -26,7 +26,7 @@ public class Spreading : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        Debug.Log(contect);
+        
 
         if (Input.GetKeyDown(KeyCode.Space) && timer >= 3f && canSpread)
         {

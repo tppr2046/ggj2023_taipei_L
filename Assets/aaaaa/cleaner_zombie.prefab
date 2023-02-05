@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 4835138604375663227}
   - component: {fileID: 7435381908576377251}
   - component: {fileID: 8915082657272443466}
+  - component: {fileID: -1070979364979480561}
+  - component: {fileID: 274627138669346478}
+  - component: {fileID: -7344888720914279282}
   m_Layer: 0
   m_Name: cleaner_zombie
   m_TagString: Player
@@ -1126,3 +1129,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-1070979364979480561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835138604375663229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33a5663a1d6c14892daa0a346128fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpread: 0
+  timer: 0
+  contect: {fileID: 0}
+  isContecting: 0
+  collectstuff: {fileID: 274627138669346478}
+  zombieType:
+  - {fileID: 1560627678734196287, guid: 242408ca6fa424347a9470f186cdd068, type: 3}
+  - {fileID: 4835138604375663229}
+  - {fileID: 710611333242017818, guid: 8cf188a9f5cb40b42add9ad89d7d8de1, type: 3}
+  zombie: 0
+--- !u!114 &274627138669346478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835138604375663229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa790088bdbebb4c93e4120c33a3f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IDcard: 0
+--- !u!114 &-7344888720914279282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835138604375663229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fe1dafaecc47448bc42fd561ea3efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2

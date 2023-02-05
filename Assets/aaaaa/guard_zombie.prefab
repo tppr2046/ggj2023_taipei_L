@@ -11,14 +11,15 @@ GameObject:
   - component: {fileID: 5060114069650038072}
   - component: {fileID: 2380777895067821522}
   - component: {fileID: 4269350824267400758}
-  - component: {fileID: 2626068273671249672}
   - component: {fileID: 1569283849818906631}
   - component: {fileID: 1293620590091657836}
+  - component: {fileID: 2626068273671249672}
   - component: {fileID: 1034416770293519302}
   - component: {fileID: 8166006196651568884}
   - component: {fileID: 9004925812138628267}
   - component: {fileID: 2784637972718416777}
   - component: {fileID: 6010657508307923461}
+  - component: {fileID: 5375672233489987807}
   m_Layer: 6
   m_Name: guard_zombie
   m_TagString: Player
@@ -91,19 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2626068273671249672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710611333242017818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a01774b9f9c86b4daaa4368c44c30ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IDcard: 0
 --- !u!114 &1569283849818906631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,11 +106,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canSpread: 0
   timer: 0
-  spreadOrNot: {fileID: 0}
   contect: {fileID: 0}
   isContecting: 0
-  collectstuff: {fileID: 0}
-  zombieType: []
+  collectstuff: {fileID: 2626068273671249672}
+  zombieType:
+  - {fileID: 1560627678734196287, guid: 242408ca6fa424347a9470f186cdd068, type: 3}
+  - {fileID: 4835138604375663229, guid: 14060df80094011479f0f5460cb468d3, type: 3}
+  - {fileID: 710611333242017818}
   zombie: 0
 --- !u!95 &1293620590091657836
 Animator:
@@ -144,6 +134,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2626068273671249672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710611333242017818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa790088bdbebb4c93e4120c33a3f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IDcard: 0
 --- !u!114 &1034416770293519302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,3 +1170,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6165437, y: 0.96737844}
   m_EdgeRadius: 0
+--- !u!114 &5375672233489987807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710611333242017818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fe1dafaecc47448bc42fd561ea3efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
