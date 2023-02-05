@@ -15,10 +15,12 @@ public class DoorSystem : MonoBehaviour
         {
             Destroy(GameObject.FindWithTag("Button1"));
             door.opendoor();
+            buttontrigger = false;
         }
         if (Input.GetKey(KeyCode.Space) && gasbuttontrigger)
         {
             Gas.putgas();
+            gasbuttontrigger = false;
         }
     }
     void OnTriggerEnter2D(Collider2D collide)
@@ -36,4 +38,9 @@ public class DoorSystem : MonoBehaviour
             gasbuttontrigger = true;
         }
     }
+    //void OnTriggerEnter2D(Gascollide collide)
+    //{
+
+    //}
+    //GasRegion=gameObject.GetComponent<GasRegion>();
 }

@@ -1,22 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gastrigger : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D Placeitemareacollider;
+    public bool dead = false;
+    public Collider2D area;
+    
+    //[SerializeField] private BoxCollider2D Placeitemareacollider;
     public void putgas()
     {
         gameObject.GetComponent<ParticleSystem>().Play();
-        Collider[] colliderarray = Physics.OverlapBox(Placeitemareacollider.transform.position, Placeitemareacollider.size, Placeitemareacollider.transform.rotation);
-        foreach (Collider collider in colliderarray)
-        {
-            /*
-            if (collider.transform.CompareTag("NPC"))
-            {
-                Destroy(GameObject.FindWithTag("NPC"));
-            }*/
-            Debug.Log(collider);
-        }
+        dead = true;
+        area.enabled = true;
     }
-}
+    void OnTriggerEnter2D(Collider2D collide)
+    {
+        //if (collide.gameObject.CompareTag("scientist"))
+        if (dead)
+        {
+            if (collide.gameObject.CompareTag("cleaner"))
+            {
+                Destroy(collide.gameObject, 3f);
+            }
+            if (collide.gameObject.CompareTag("guard") )
+            {
+                Destroy(collide.gameObject, 3f);
+            }
+            if (collide.gameObject.CompareTag("scientist") )
+            {
+                Destroy(collide.gameObject , 3f);
+            }
+        }    
+
+
+    }
+}    
+
