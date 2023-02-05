@@ -5,7 +5,8 @@ using UnityEngine;
 public class start : MonoBehaviour 
 {
 
-    public Object scene;
+    public Object scene1;
+    public Object scene2;
 
     public void Start() 
     {
@@ -15,7 +16,13 @@ public class start : MonoBehaviour
     public void LoadLevel1() 
     {
         Debug.Log("loadlevel");
-        Application.LoadLevel(scene.name);
+        Application.LoadLevel(scene1.name);
+    }
+
+    public void LoadLeve2()
+    {
+        Debug.Log("loadleve2");
+        Application.LoadLevel(scene2.name);
     }
 
 }
