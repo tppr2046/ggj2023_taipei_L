@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using HutongGames.PlayMaker;
 
 
 public enum States
@@ -39,8 +40,8 @@ public class NPC_MoveAI : MonoBehaviour
     [Header("Player")]
     public GameObject player;
 
-    
 
+    public PlayMakerFSM fsm;
 
     void Awake()
     {
@@ -115,6 +116,7 @@ public class NPC_MoveAI : MonoBehaviour
 
     void Walk()
     {
+        fsm.SendEvent("WALK");
         //anim.Play("Move");
         Ai.speed = 7f;
         if (callMove == true)
@@ -169,6 +171,7 @@ public class NPC_MoveAI : MonoBehaviour
 
     void Idle()
     {
+        fsm.SendEvent("IDLE");
         //©ñ°Êµe
         //anim.Play("Idle");
         Ai.destination = this.transform.position;
@@ -176,6 +179,7 @@ public class NPC_MoveAI : MonoBehaviour
 
     void Attack()
     {
+        fsm.SendEvent("ATTACK");
         Ai.speed = 12f;
         Ai.destination = player.transform.position;
 
@@ -197,6 +201,7 @@ public class NPC_MoveAI : MonoBehaviour
 
     void RunAway()
     {
+        fsm.SendEvent("RUN");
         Ai.speed = 20f;
         Debug.Log("Run");
         //anim.Play("Move");
