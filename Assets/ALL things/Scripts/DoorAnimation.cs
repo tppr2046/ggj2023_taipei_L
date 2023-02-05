@@ -5,7 +5,9 @@ using UnityEngine;
 public class DoorAnimation : MonoBehaviour
 {
     public Animator animator;
-    bool inArea;
+    public bool inArea;
+    public AudioSource source;
+    public AudioClip OpenSound;
 
 
     void Update()
@@ -21,7 +23,8 @@ public class DoorAnimation : MonoBehaviour
 
     public void opendoor()
     {
-        animator.Play("DoorAnimation");
+        source.PlayOneShot(OpenSound);
+        animator.Play("Open");
     }
 
     void OnTriggerEnter2D(Collider2D collision)
