@@ -1,0 +1,7 @@
+spore.png
+size:43,64
+filter:Linear,Linear
+pma:true
+spore
+bounds:2,2,39,60
+offsets:13,1,64,64

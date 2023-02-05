@@ -6,8 +6,13 @@ TagManager:
   tags:
   - Button1
   - IDRegion
-  - RootsPlayer
+  - GasButton
+  - GasRegion
+  - Npc
+  - guard
   - scientist
+  - cleaner
+  - rootplayer
   layers:
   - Default
   - TransparentFX

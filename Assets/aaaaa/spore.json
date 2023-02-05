@@ -1,0 +1,1 @@
+{"skeleton":{"hash":"Fnv14esSqeM","spine":"4.1.19","x":-33.25,"y":-2.61,"width":64,"height":64,"images":"","audio":""},"bones":[{"name":"root"}],"slots":[{"name":"spore","bone":"root","attachment":"spore"}],"skins":[{"name":"default","attachments":{"spore":{"spore":{"x":-1.25,"y":29.39,"width":64,"height":64}}}}],"animations":{"animation":{}}}
