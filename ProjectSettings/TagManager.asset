@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Button1
   - IDRegion
+  - RootsPlayer
+  - scientist
   layers:
   - Default
   - TransparentFX

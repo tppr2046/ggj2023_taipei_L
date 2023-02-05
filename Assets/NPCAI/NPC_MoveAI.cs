@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-enum States
+public enum States
 {
     Idle , Walk , RunAway , Attack
 }
 
 public class NPC_MoveAI : MonoBehaviour
 {
-    [SerializeField] States m_States;
-    States defualtStates;
+    public States m_States;
+    public States defualtStates;
     
 
     [Header("Npc")]
@@ -30,7 +30,7 @@ public class NPC_MoveAI : MonoBehaviour
 
     float runTimer , atkTimer;
     public float tr_Timer , atk_CD;
-    bool TriggerRun;
+    public bool TriggerRun;
 
     public Collider2D attackRegion;
 
@@ -76,6 +76,7 @@ public class NPC_MoveAI : MonoBehaviour
             runTimer = 0;
             
             m_States = States.RunAway;
+            
             TriggerRun = true;
         }
 
@@ -87,7 +88,7 @@ public class NPC_MoveAI : MonoBehaviour
 
 
         //Ai.destination = target.position;
-        if (Ai.destination.x >= npc.position.x)
+        if (Ai.destination.x > npc.position.x)
         {
             npc.rotation = Quaternion.Euler(0, 0,0);
         }
@@ -125,13 +126,11 @@ public class NPC_MoveAI : MonoBehaviour
             {
                 moveBack = true;
                 Ai.destination = orginPos;
-
             }
             else
             {
                 Ai.destination = targetPoints[1] + targetPoints[0] + orginPos;
             }
-
         }
 
         if (Vector3.Distance(targetPoints[1] + targetPoints[0] + orginPos, npc.position) <= Ai.stoppingDistance)
@@ -191,6 +190,7 @@ public class NPC_MoveAI : MonoBehaviour
     void RunAway()
     {
         Ai.speed = 20f;
+        Debug.Log("Run");
         //anim.Play("Move");
 
         if (TriggerRun)
