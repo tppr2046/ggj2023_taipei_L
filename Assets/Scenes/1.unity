@@ -2292,7 +2292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af71091d40ae1f044be97cbc3e0ad583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Placeitemareacollider: {fileID: 2020265728}
 --- !u!61 &2020265728
 BoxCollider2D:
   m_ObjectHideFlags: 0

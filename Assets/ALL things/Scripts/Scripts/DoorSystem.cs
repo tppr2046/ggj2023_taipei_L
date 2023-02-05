@@ -36,4 +36,9 @@ public class DoorSystem : MonoBehaviour
             gasbuttontrigger = true;
         }
     }
+    //void OnTriggerEnter2D(Gascollide collide)
+    //{
+
+    //}
+    //GasRegion=gameObject.GetComponent<GasRegion>();
 }
