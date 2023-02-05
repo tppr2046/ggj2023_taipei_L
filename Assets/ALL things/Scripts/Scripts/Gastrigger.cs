@@ -22,15 +22,15 @@ public class Gastrigger : MonoBehaviour
         {
             if (collide.gameObject.CompareTag("cleaner"))
             {
-                Destroy(GameObject.FindWithTag("cleaner"));
+                Destroy(collide.gameObject, 3f);
             }
             if (collide.gameObject.CompareTag("guard") )
             {
-                Destroy(GameObject.FindWithTag("guard"));
+                Destroy(collide.gameObject, 3f);
             }
             if (collide.gameObject.CompareTag("scientist") )
             {
-                Destroy(collide.gameObject);
+                Destroy(collide.gameObject , 3f);
             }
         }    
 
