@@ -21,6 +21,9 @@ public class NPC_MoveAI : MonoBehaviour
     public bool Guard;
     public float attackRange;
     public GameObject runningSmoke;
+
+    public AudioSource audioSource;
+    public AudioClip Attackbzz;
     //public Animator anim;
 
     [Header("Agent")]
@@ -204,6 +207,11 @@ public class NPC_MoveAI : MonoBehaviour
         {
             attackRegion.enabled = true; //OLD
             AttackArea.SetActive(true);
+            Debug.Log("gay");
+            audioSource.PlayOneShot(Attackbzz);
+            atkTimer = 0f;
+        }else if (atkTimer >= atk_CD)
+        {
             atkTimer = 0f;
         }
 

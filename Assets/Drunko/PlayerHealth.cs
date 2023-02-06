@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(health <= 0)
         {
+            hurt.transform.GetComponent<Image>().enabled = false;
             Destroy(this.gameObject);
             Debug.Log("GameOver");
         }
