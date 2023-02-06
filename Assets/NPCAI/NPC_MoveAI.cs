@@ -20,6 +20,7 @@ public class NPC_MoveAI : MonoBehaviour
     public Transform npc;
     public bool Guard;
     public float attackRange;
+    public GameObject runningSmoke;
     //public Animator anim;
 
     [Header("Agent")]
@@ -53,6 +54,7 @@ public class NPC_MoveAI : MonoBehaviour
     {
         runTimer += Time.deltaTime;
         atkTimer += Time.deltaTime;
+        player = GameObject.FindGameObjectWithTag("Player");
 
         switch (m_States)
         {
@@ -71,7 +73,12 @@ public class NPC_MoveAI : MonoBehaviour
             
         }
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        
+
+        if (this.transform.CompareTag("cleaner"))
+        {
+            Ai.speed *= 0.7f;
+        }
 
         if(!Guard && player != null && Vector3.Distance (npc.position , player.transform.position) <= 12) //如果與PLAYER距離小於3的話
         {
@@ -116,6 +123,7 @@ public class NPC_MoveAI : MonoBehaviour
 
     void Walk()
     {
+        runningSmoke.SetActive(false);
         fsm.SendEvent("WALK");
         //anim.Play("Move");
         Ai.speed = 7f;
@@ -172,6 +180,7 @@ public class NPC_MoveAI : MonoBehaviour
     void Idle()
     {
         fsm.SendEvent("IDLE");
+        runningSmoke.SetActive(false);
         //放動畫
         //anim.Play("Idle");
         Ai.destination = this.transform.position;
@@ -179,6 +188,7 @@ public class NPC_MoveAI : MonoBehaviour
 
     void Attack()
     {
+        runningSmoke.SetActive(false);
         fsm.SendEvent("ATTACK");
         Ai.speed = 12f;
         Ai.destination = player.transform.position;
@@ -201,6 +211,8 @@ public class NPC_MoveAI : MonoBehaviour
 
     void RunAway()
     {
+        runningSmoke.SetActive(true);
+
         fsm.SendEvent("RUN");
         Ai.speed = 20f;
         Debug.Log("Run");
